@@ -16,7 +16,7 @@ function AddPage() {
     initialValues: initValues,
     validationSchema: Yup.object({
       title: Yup.string().min(2, 'At least 2 characters').max(15).required(),
-      content: Yup.string().min(5, 'At least 5 characters').max(100).required(),
+      content: Yup.string().min(5, 'At least 5 characters').max(225).required(),
     }),
 
     onSubmit: async (values) => {
@@ -26,7 +26,7 @@ function AddPage() {
       console.log('valuesCopy ===', valuesCopy);
       const addResult = await myFetchAdd(`${baseUrl}/question`, 'POST', token, values);
       console.log('addResult ===', addResult);
-      if (addResult.success === true) {
+      if (addResult === undefined) {
         history.replace('/');
       }
     },

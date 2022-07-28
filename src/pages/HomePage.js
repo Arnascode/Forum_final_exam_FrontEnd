@@ -2,18 +2,19 @@
 import Card from '../components/Card/Card';
 import { useState, useEffect } from 'react';
 import { baseUrl, myFetchAuth } from '../utils';
-import { useAuthCtx } from '../store/authContext';
-import { NavLink, useHistory } from 'react-router-dom';
+// import { useAuthCtx } from '../store/authContext';
+// import { NavLink, useHistory } from 'react-router-dom';
 import css from './css/Home.module.css';
 
 function HomePage() {
   //   const history = useHistory();
-  const { token } = useAuthCtx();
+  //   const { token } = useAuthCtx();
   //   if (!token) history.push('/login');
   const [posts, setPosts] = useState([]);
 
   const getPosts = async () => {
-    const fetchResult = await myFetchAuth(`${baseUrl}/question`, token);
+    // const fetchResult = await myFetchAuth(`${baseUrl}/question`, token);
+    const fetchResult = await myFetchAuth(`${baseUrl}/question`);
     console.log('fetchResult ===', fetchResult);
     if (Array.isArray(fetchResult)) {
       setPosts(fetchResult);
@@ -21,11 +22,11 @@ function HomePage() {
   };
 
   useEffect(() => {
-    if (token) getPosts();
+    // if (token) getPosts();
+    getPosts();
   }, []);
 
   return (
-    // <NavLink to={'/answers'}>
     <div className={css.center}>
       <h1 className='text-center'>Our Questions</h1>
 
@@ -36,7 +37,6 @@ function HomePage() {
         ))}
       </div>
     </div>
-    // </NavLink>
   );
 }
 

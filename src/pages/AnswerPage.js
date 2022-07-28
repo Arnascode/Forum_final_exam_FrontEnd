@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { NavLink } from 'react-router-dom';
 
 import { useState, useEffect } from 'react';
-import { baseUrl, myFetchAuth } from '../utils';
+import { baseUrl, myFetchAuthAnswer } from '../utils';
 import { useAuthCtx } from '../store/authContext';
 import { useHistory } from 'react-router-dom';
 import css from './css/Home.module.css';
@@ -15,7 +14,7 @@ function AnswerPage() {
   const [posts, setPosts] = useState([]);
 
   const getPosts = async () => {
-    const fetchResult = await myFetchAuth(`${baseUrl}/question/1/answers`, token);
+    const fetchResult = await myFetchAuthAnswer(`${baseUrl}/question/${2}/answers`, token);
     console.log('fetchResult ===', fetchResult);
     if (Array.isArray(fetchResult)) {
       setPosts(fetchResult);
@@ -28,7 +27,7 @@ function AnswerPage() {
 
   return (
     <div className={css.center}>
-      <h1 className='text-center'>Our Questions</h1>
+      <h1 className='text-center'>Our Answers</h1>
 
       <div className={css.container}>
         {posts.length === 0 && <h2>Loading...</h2>}

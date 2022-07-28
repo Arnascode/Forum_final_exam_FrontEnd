@@ -30,6 +30,22 @@ export async function myFetchAuth(url, token) {
     console.log('myFetchAuth error ===', error);
   }
 }
+export async function myFetchAuthAnswer(url, token, id) {
+  try {
+    const options = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    // console.log('options ===', options);
+    const resp = await fetch(url, options);
+    const dataInJs = await resp.json();
+    return dataInJs;
+  } catch (error) {
+    console.log('myFetchAuth error ===', error);
+  }
+}
 
 export async function myFetchAdd(url, method = 'GET', token, data = null) {
   try {
@@ -45,7 +61,7 @@ export async function myFetchAdd(url, method = 'GET', token, data = null) {
     const dataInJs = await resp.json();
     return dataInJs;
   } catch (error) {
-    throw new Error('myFetchAdd error ===', error);
+    console.log('myFetchAuth error ===', error);
   }
 }
 

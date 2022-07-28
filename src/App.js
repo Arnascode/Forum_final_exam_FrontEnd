@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage';
 import ProtectedRoute from './components/ProtectedRoute';
 import AddPage from './pages/AddPage';
 import AnswerPage from './pages/AnswerPage';
+// const id = 5;
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
         <ProtectedRoute path={'/add'}>
           <AddPage />
         </ProtectedRoute>
-        <ProtectedRoute path={'/answers'}>
+        <ProtectedRoute path={'/:id/answers'}>
           <AnswerPage />
         </ProtectedRoute>
         <Route exact path={'/'}>

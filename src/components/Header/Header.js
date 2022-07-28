@@ -21,7 +21,7 @@ function Header(props) {
                     Home
                   </NavLink>
                   <NavLink className={css['nav-link']} to={'/add'}>
-                    Add
+                    Add Question
                   </NavLink>
                   <NavLink onClick={logout} className={css['nav-link']} to={'/login'}>
                     Logout
@@ -35,6 +35,9 @@ function Header(props) {
                   </NavLink>
                   <NavLink className={css['nav-link']} to={'/register'}>
                     Register
+                  </NavLink>
+                  <NavLink className={css['nav-link']} to={'/add'}>
+                    Add Question
                   </NavLink>
                 </>
               )}
