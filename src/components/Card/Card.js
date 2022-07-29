@@ -5,7 +5,7 @@ function Card(props) {
   return (
     <div className={css.card}>
       <div className={css.body}>
-        <NavLink to={'/:id/answers'}>
+        <NavLink to={`/${props.id}/answers`}>
           <button>
             <h2>Question Num. {props.id}</h2>Check answers
           </button>

@@ -57,7 +57,12 @@ export async function myFetchAdd(url, method = 'GET', token, data = null) {
     };
     options.method = method === 'POST' ? 'POST' : 'GET';
     options.body = data ? JSON.stringify(data) : null;
+
     const resp = await fetch(url, options);
+    console.log(resp.status);
+    if (resp.status === 201) {
+      return true;
+    }
     const dataInJs = await resp.json();
     return dataInJs;
   } catch (error) {

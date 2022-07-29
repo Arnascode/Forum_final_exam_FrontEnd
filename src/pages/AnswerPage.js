@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { baseUrl, myFetchAuthAnswer } from '../utils';
 import { useAuthCtx } from '../store/authContext';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import css from './css/Home.module.css';
 import CardAnswer from '../components/CardAnswer/cardAnswer';
 
@@ -12,9 +12,10 @@ function AnswerPage() {
   const { token } = useAuthCtx();
   if (!token) history.push('/login');
   const [posts, setPosts] = useState([]);
+  const { id } = useParams();
 
   const getPosts = async () => {
-    const fetchResult = await myFetchAuthAnswer(`${baseUrl}/question/${2}/answers`, token);
+    const fetchResult = await myFetchAuthAnswer(`${baseUrl}/question/${id}/answers`, token);
     console.log('fetchResult ===', fetchResult);
     if (Array.isArray(fetchResult)) {
       setPosts(fetchResult);

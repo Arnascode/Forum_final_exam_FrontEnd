@@ -26,7 +26,7 @@ function AddPage() {
       console.log('valuesCopy ===', valuesCopy);
       const addResult = await myFetchAdd(`${baseUrl}/question`, 'POST', token, values);
       console.log('addResult ===', addResult);
-      if (addResult === undefined) {
+      if (addResult === true) {
         history.replace('/');
       }
     },
