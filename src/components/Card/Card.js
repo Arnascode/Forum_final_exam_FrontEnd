@@ -12,8 +12,12 @@ function Card(props) {
         </NavLink>
         <h2 className={css.title}>{props.title}</h2>
         <h3 className={css.text}>{props.content}</h3>
-        <p>{props.timestamp}</p>
-        <button>Delete</button>
+        <p>Created at: {props.timestamp}</p>
+        <p>Edited at: {props.edit}</p>
+        <div>
+          <button>Delete</button>
+          <button>Edit</button>
+        </div>
       </div>
     </div>
   );

@@ -15,7 +15,7 @@ function AddPage() {
   const formik = useFormik({
     initialValues: initValues,
     validationSchema: Yup.object({
-      title: Yup.string().min(2, 'At least 2 characters').max(15).required(),
+      title: Yup.string().min(3, 'At least 2 characters').max(15).required(),
       content: Yup.string().min(5, 'At least 5 characters').max(225).required(),
     }),
 

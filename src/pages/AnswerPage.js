@@ -1,11 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-
+import { useFormik } from 'formik';
 import { useState, useEffect } from 'react';
-import { baseUrl, myFetchAuthAnswer } from '../utils';
+import { baseUrl, myFetchAdd, myFetchAuthAnswer } from '../utils';
 import { useAuthCtx } from '../store/authContext';
 import { useHistory, useParams } from 'react-router-dom';
 import css from './css/Home.module.css';
 import CardAnswer from '../components/CardAnswer/cardAnswer';
+import * as Yup from 'yup';
+
+const initValues = {
+  answer: '',
+};
 
 function AnswerPage() {
   const history = useHistory();
@@ -25,6 +30,31 @@ function AnswerPage() {
   useEffect(() => {
     if (token) getPosts();
   }, []);
+  const formik = useFormik({
+    initialValues: initValues,
+    validationSchema: Yup.object({
+      answer: Yup.string().min(3, 'At least 3 characters').max(15).required(),
+    }),
+
+    onSubmit: async (values) => {
+      const valuesCopy = { ...values };
+
+      // console.log('values ===', values);
+      console.log('valuesCopy ===', valuesCopy);
+      const addResult = await myFetchAdd(`${baseUrl}/question/${id}/answers`, 'POST', token, values);
+      console.log('addResult ===', addResult);
+      if (addResult === true) {
+        history.replace('/');
+      }
+    },
+  });
+  function rightClassesForInput(field) {
+    let resultClasses = 'form-control';
+    if (formik.touched[field]) {
+      resultClasses += formik.errors[field] ? ' is-invalid' : ' is-valid';
+    }
+    return resultClasses;
+  }
 
   return (
     <div className={css.center}>
@@ -36,6 +66,24 @@ function AnswerPage() {
           <CardAnswer key={pObj.id} {...pObj} />
         ))}
       </div>
+      <form onSubmit={formik.handleSubmit} className={css.container}>
+        <div className='form-group'>
+          <label htmlFor='description'>answer</label>
+          <input
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.answer}
+            type='answer'
+            className={rightClassesForInput('answer')}
+            id='answer'
+            name='answer'
+          />
+          <div className='invalid-feedback'>{formik.errors.answer}</div>
+        </div>
+        <button type='submit' className='btn'>
+          Add
+        </button>
+      </form>
     </div>
   );
 }
