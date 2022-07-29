@@ -12,9 +12,15 @@ function Card(props) {
         </NavLink>
         <h2 className={css.title}>{props.title}</h2>
         <h3 className={css.text}>{props.content}</h3>
-        <p>Created at: {props.timestamp}</p>
-        <p>Edited at: {props.edit}</p>
+        <p className={css.text}>
+          <strong>Created at:</strong> {props.timestamp.split('.000Z')}
+        </p>
+        <p className={css.text}>
+          <strong>Edited at:</strong> {props.edit.split('.000Z')}
+        </p>
         <div>
+          <button type='submit'>{props.id}</button>
+
           <button>Delete</button>
           <button>Edit</button>
         </div>

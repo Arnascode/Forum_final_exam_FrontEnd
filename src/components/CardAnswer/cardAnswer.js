@@ -6,10 +6,10 @@ function CardAnswer(props) {
         <h2>{props.id}</h2>
         <h3 className={css.title}>{props.answer}</h3>
         <p className={css.text}>
-          <strong>Created at:</strong> {props.timestamp}
+          <strong>Created at:</strong> {props.timestamp.split('.000Z')}
         </p>
         <p className={css.text}>
-          <strong>Edited at:</strong> {props.edit}
+          <strong>Edited at:</strong> {props.edit.split('.000Z')}
         </p>
       </div>
       <div>

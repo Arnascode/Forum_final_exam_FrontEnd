@@ -7,6 +7,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import css from './css/Home.module.css';
 import CardAnswer from '../components/CardAnswer/cardAnswer';
 import * as Yup from 'yup';
+// import toast from 'react-hot-toast';
 
 const initValues = {
   answer: '',
@@ -30,6 +31,7 @@ function AnswerPage() {
   useEffect(() => {
     if (token) getPosts();
   }, []);
+  
   const formik = useFormik({
     initialValues: initValues,
     validationSchema: Yup.object({
@@ -44,6 +46,8 @@ function AnswerPage() {
       const addResult = await myFetchAdd(`${baseUrl}/question/${id}/answers`, 'POST', token, values);
       console.log('addResult ===', addResult);
       if (addResult === true) {
+        // toast.success('Logged in Successfully!');
+        // console.log(toaster);
         history.replace('/');
       }
     },
