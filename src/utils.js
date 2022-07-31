@@ -91,6 +91,28 @@ export async function myDelete(url, method = 'GET', token, data = null) {
     console.log('myFetchAuth error ===', error);
   }
 }
+export async function myPatch(url, method = 'GET', token, data = null) {
+  try {
+    const options = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    options.method = method === 'PATCH' ? 'PATCH' : 'GET';
+    options.body = data ? JSON.stringify(data) : null;
+
+    const resp = await fetch(url, options);
+    console.log(resp.status);
+    if (resp.status === 201) {
+      return true;
+    }
+    const dataInJs = await resp.json();
+    return dataInJs;
+  } catch (error) {
+    console.log('myFetchAuth error ===', error);
+  }
+}
 
 export const baseUrl = process.env.REACT_APP_BACKEND_URL;
 if (!baseUrl) throw new Error('baseUrl nerastas');

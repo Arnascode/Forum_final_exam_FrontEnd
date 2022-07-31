@@ -1,21 +1,22 @@
 import { useFormik } from 'formik';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 import { useAuthCtx } from '../store/authContext';
-import { baseUrl, myFetchAdd } from '../utils';
+import { baseUrl, myFetchAdd, myPatch } from '../utils';
 import css from './css/Add.module.css';
 const initValues = {
   title: '',
   content: '',
 };
 
-function AddPage() {
+function QuestEdit() {
   const history = useHistory();
   const { token } = useAuthCtx();
+  const { id } = useParams();
   const formik = useFormik({
     initialValues: initValues,
     validationSchema: Yup.object({
-      title: Yup.string().min(3, 'At least 2 characters').max(55).required(),
+      title: Yup.string().min(3, 'At least 2 characters').max(15).required(),
       content: Yup.string().min(5, 'At least 5 characters').max(225).required(),
     }),
 
@@ -24,7 +25,7 @@ function AddPage() {
 
       // console.log('values ===', values);
       console.log('valuesCopy ===', valuesCopy);
-      const addResult = await myFetchAdd(`${baseUrl}/question`, 'POST', token, values);
+      const addResult = await myPatch(`${baseUrl}/question/${id}`, 'PATCH', token, values);
       console.log('addResult ===', addResult);
       if (addResult === true) {
         history.replace('/');
@@ -41,7 +42,7 @@ function AddPage() {
   }
   return (
     <div className={css.card}>
-      <h1 className={css.center}>Add Your Question</h1>
+      <h1 className={css.center}>Edit Your Question</h1>
 
       <form onSubmit={formik.handleSubmit} className={css.container}>
         <div className='form-group'>
@@ -78,4 +79,4 @@ function AddPage() {
   );
 }
 
-export default AddPage;
+export default QuestEdit;

@@ -8,6 +8,8 @@ import HomePage from './pages/HomePage';
 import ProtectedRoute from './components/ProtectedRoute';
 import AddPage from './pages/AddPage';
 import AnswerPage from './pages/AnswerPage';
+import QuestEdit from './pages/QuestEdit';
+import AnswerEdit from './pages/AnswerEdit';
 // const id = 5;
 
 function App() {
@@ -26,6 +28,12 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path={'/:id/answers'}>
           <AnswerPage />
+        </ProtectedRoute>
+        <ProtectedRoute path={'/question/:id'}>
+          <QuestEdit />
+        </ProtectedRoute>
+        <ProtectedRoute path={'/answers/:id'}>
+          <AnswerEdit />
         </ProtectedRoute>
         <Route exact path={'/'}>
           <HomePage />
