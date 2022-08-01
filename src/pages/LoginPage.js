@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 import { useAuthCtx } from '../store/authContext';
 import { baseUrl, myFetch } from '../utils';
-// import toast from 'react-hot-toast';
+import toast from 'react-hot-toast';
 const initValues = {
   email: '',
   password: '',
@@ -22,7 +22,7 @@ function LoginPage() {
       const fetchResult = await myFetch(`${baseUrl}/login`, 'POST', values);
       console.log(fetchResult);
       if (fetchResult.success === true) {
-        // toast.success('Logged in Successfully!', { duration: 6000 });
+        toast.success('Logged in Successfully!', { duration: 1000 });
         ctx.login(fetchResult.token, values.email);
         history.replace('/');
       }

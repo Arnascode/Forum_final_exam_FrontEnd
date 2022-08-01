@@ -14,6 +14,11 @@ function CardAnswer(props) {
   function handleCounterDec() {
     setCounterValue((prevState) => prevState - 1);
   }
+
+  const handleAnswer = () => {
+    localStorage.setItem('answer', props.answer);
+  };
+
   return (
     <div className={css.card}>
       <div className={css.body}>
@@ -41,7 +46,7 @@ function CardAnswer(props) {
           Delete
         </Button>
         <NavLink to={`/answers/${props.id}`}>
-          <Button button primary>
+          <Button button primary onClick={handleAnswer}>
             Edit
           </Button>
         </NavLink>

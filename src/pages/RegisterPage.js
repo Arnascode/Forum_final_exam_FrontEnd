@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
-
+import toast from 'react-hot-toast';
 import { useAuthCtx } from '../store/authContext';
 import { baseUrl, myFetch } from '../utils';
 
@@ -31,6 +31,7 @@ function RegisterPage() {
       const registerResult = await myFetch(`${baseUrl}/register`, 'POST', valuesCopy);
 
       if (registerResult === 'user created') {
+        toast.success('Register successfully!');
         ctx.login(registerResult.token, valuesCopy.email);
         history.replace('/login');
       }

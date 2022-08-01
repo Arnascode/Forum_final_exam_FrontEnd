@@ -1,9 +1,11 @@
+import { toHaveStyle } from '@testing-library/jest-dom/dist/matchers';
 import { useFormik } from 'formik';
 import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 import { useAuthCtx } from '../store/authContext';
 import { baseUrl, myFetchAdd } from '../utils';
 import css from './css/Add.module.css';
+import toast from 'react-hot-toast';
 const initValues = {
   title: '',
   content: '',
@@ -27,6 +29,7 @@ function AddPage() {
       const addResult = await myFetchAdd(`${baseUrl}/question`, 'POST', token, values);
       console.log('addResult ===', addResult);
       if (addResult === true) {
+        toast.success('Question added successfully');
         history.replace('/');
       }
     },

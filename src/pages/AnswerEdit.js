@@ -5,21 +5,19 @@ import { baseUrl, myDelete, myFetchAdd, myFetchAuthAnswer, myPatch } from '../ut
 import { useAuthCtx } from '../store/authContext';
 import { useHistory, useParams } from 'react-router-dom';
 import css from './css/Home.module.css';
-import CardAnswer from '../components/CardAnswer/cardAnswer';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
-
+const answ = localStorage.getItem('answer');
 const initValues = {
-  answer: '',
+  answer: answ,
 };
 
 function AnswerEdit() {
   const history = useHistory();
   const { token } = useAuthCtx();
   if (!token) history.push('/login');
-  const [posts, setPosts] = useState([]);
+
   const { id } = useParams();
-  const { question_id } = useParams();
 
   //   const getPosts = async () => {
   //     const fetchResult = await myFetchAuthAnswer(`${baseUrl}/question/${id}/answers`, token);
@@ -55,10 +53,13 @@ function AnswerEdit() {
       const addResult = await myPatch(`${baseUrl}/answers/${id}`, 'PATCH', token, values);
       console.log('addResult ===', addResult);
       if (addResult === true) {
-        // toast.success('Logged in Successfully!');
-        // console.log(toaster);
-        history.replace(`/`);
-        // perejima i question_id
+        toast.success('Answer change is Successfully!', { duration: 1000 });
+        history.goBack();
+
+        // Peržiūrėti klausimų sąrašą su gamybė rikiuoti pagal klausimo datą ir/arba atsakymų skaičių (didėjimo arba mažėjimo tvarka)
+        // ar reikia is backo left joiN? butina backo
+        // Filtruoti atsakytus arba neatsakytus klausimus
+        // su length jauciu ar reikia is backo pasidaryt ? AGREGATION select count
       }
     },
   });

@@ -8,6 +8,7 @@ import css from './css/Home.module.css';
 import { NavLink, useParams } from 'react-router-dom';
 import { useAuthCtx } from '../store/authContext';
 import toast from 'react-hot-toast';
+
 function HomePage() {
   // const { id } = useParams();
   //   const history = useHistory();

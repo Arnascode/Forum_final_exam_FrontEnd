@@ -2,11 +2,15 @@ import { useFormik } from 'formik';
 import { useHistory, useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 import { useAuthCtx } from '../store/authContext';
-import { baseUrl, myFetchAdd, myPatch } from '../utils';
+import { baseUrl, myPatch } from '../utils';
 import css from './css/Add.module.css';
+import toast from 'react-hot-toast';
+
+const tit = localStorage.getItem('title');
+const cont = localStorage.getItem('content');
 const initValues = {
-  title: '',
-  content: '',
+  title: tit,
+  content: cont,
 };
 
 function QuestEdit() {
@@ -16,7 +20,7 @@ function QuestEdit() {
   const formik = useFormik({
     initialValues: initValues,
     validationSchema: Yup.object({
-      title: Yup.string().min(3, 'At least 2 characters').max(15).required(),
+      title: Yup.string().min(3, 'At least 2 characters').max(55).required(),
       content: Yup.string().min(5, 'At least 5 characters').max(225).required(),
     }),
 
@@ -28,6 +32,7 @@ function QuestEdit() {
       const addResult = await myPatch(`${baseUrl}/question/${id}`, 'PATCH', token, values);
       console.log('addResult ===', addResult);
       if (addResult === true) {
+        toast.success('Question changed successfully');
         history.replace('/');
       }
     },

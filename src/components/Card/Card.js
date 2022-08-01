@@ -15,7 +15,11 @@ function Card(props) {
   function handleCounterDec() {
     setCounterValue((prevState) => prevState - 1);
   }
-
+  const handle = () => {
+    localStorage.setItem('title', props.title);
+    localStorage.setItem('content', props.content);
+  };
+  console.log(handle);
   return (
     <div className={css.card}>
       <div className={css.body}>
@@ -47,7 +51,7 @@ function Card(props) {
           </Button>
           <NavLink to={`/question/${props.id}`}>
             {/* <Button button primary onClick={() => props.onPatch(props.id)}> */}
-            <Button>Edit</Button>
+            <Button onClick={handle}>Edit</Button>
           </NavLink>
         </div>
       </div>

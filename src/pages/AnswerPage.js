@@ -8,6 +8,7 @@ import css from './css/Home.module.css';
 import CardAnswer from '../components/CardAnswer/cardAnswer';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
+import Button from '../components/UI/Button/Button';
 
 const initValues = {
   answer: '',
@@ -49,14 +50,13 @@ function AnswerPage() {
     onSubmit: async (values) => {
       const valuesCopy = { ...values };
 
-      // console.log('values ===', values);
       console.log('valuesCopy ===', valuesCopy);
       const addResult = await myFetchAdd(`${baseUrl}/question/${id}/answers`, 'POST', token, values);
       console.log('addResult ===', addResult);
       if (addResult === true) {
-        // toast.success('Logged in Successfully!');
-        // console.log(toaster);
-        history.replace('/');
+        toast.success('Your answers were added successfully!');
+
+        getPosts();
       }
     },
   });
@@ -92,6 +92,7 @@ function AnswerPage() {
           />
           <div className='invalid-feedback'>{formik.errors.answer}</div>
         </div>
+
         <button type='submit' className='btn'>
           Add
         </button>
