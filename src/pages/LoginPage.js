@@ -39,7 +39,7 @@ function LoginPage() {
     return resultClasses;
   }
   return (
-    <div className='container'>
+    <div className='containerlog'>
       <h1 className='text-center'>Login Here</h1>
       <form onSubmit={formik.handleSubmit} className='jumbotron'>
         <div className='form-group'>
@@ -68,7 +68,7 @@ function LoginPage() {
           />
           <div className='invalid-feedback'>{formik.errors.password}</div>
         </div>
-        <button type='submit' className='btn'>
+        <button type='submit' className='btt'>
           Login
         </button>
       </form>

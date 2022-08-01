@@ -4,11 +4,10 @@ import { useState, useEffect } from 'react';
 import { baseUrl, myDelete, myFetchAdd, myFetchAuthAnswer } from '../utils';
 import { useAuthCtx } from '../store/authContext';
 import { useHistory, useParams } from 'react-router-dom';
-import css from './css/Home.module.css';
+import css from './css/Answer.module.css';
 import CardAnswer from '../components/CardAnswer/cardAnswer';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
-import Button from '../components/UI/Button/Button';
 
 const initValues = {
   answer: '',
@@ -36,7 +35,7 @@ function AnswerPage() {
   async function deleteQuestion(id) {
     const fetchResult = await myDelete(`${baseUrl}/answers/${id}`, 'DELETE', token);
     if (fetchResult === true) {
-      toast.success('Question was deleted');
+      toast.success('Answer was deleted');
       getPosts();
     }
   }
@@ -78,9 +77,9 @@ function AnswerPage() {
           <CardAnswer key={pObj.id} {...pObj} onDelete={deleteQuestion} />
         ))}
       </div>
-      <form onSubmit={formik.handleSubmit} className={css.container}>
+      <form onSubmit={formik.handleSubmit} className={css.form}>
         <div className='form-group'>
-          <label htmlFor='description'>answer</label>
+          <label htmlFor='description'>Answer </label>
           <input
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -90,12 +89,12 @@ function AnswerPage() {
             id='answer'
             name='answer'
           />
-          <div className='invalid-feedback'>{formik.errors.answer}</div>
-        </div>
 
-        <button type='submit' className='btn'>
-          Add
-        </button>
+          <div className='invalid-feedback'>{formik.errors.answer}</div>
+          <button type='submit' className={css.but}>
+            Add
+          </button>
+        </div>
       </form>
     </div>
   );

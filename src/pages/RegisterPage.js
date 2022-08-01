@@ -53,7 +53,7 @@ function RegisterPage() {
     return resultClasses;
   }
   return (
-    <div className='container'>
+    <div className='containerlog'>
       <h1 className='text-center'>Register here</h1>
       <form onSubmit={formik.handleSubmit} onBlur={matchPass} className='jumbotron'>
         <div className='form-group'>
@@ -108,7 +108,7 @@ function RegisterPage() {
           />
           <div className='invalid-feedback'>{formik.errors.repeatPassword}</div>
         </div>
-        <button type='submit' className='btn'>
+        <button type='submit' className='btt'>
           Register
         </button>
       </form>

@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-// import ProtectedRoute from '../ProtectedRoute';
 import css from './Card.module.css';
 import { useState } from 'react';
 import Button from '../UI/Button/Button';
@@ -24,7 +23,7 @@ function Card(props) {
     <div className={css.card}>
       <div className={css.body}>
         <NavLink to={`/${props.id}/answers`}>
-          <button>
+          <button className={css.but}>
             <h2>Question Num. {props.id}</h2>Check answers
           </button>
         </NavLink>
@@ -50,7 +49,6 @@ function Card(props) {
             Delete
           </Button>
           <NavLink to={`/question/${props.id}`}>
-            {/* <Button button primary onClick={() => props.onPatch(props.id)}> */}
             <Button onClick={handle}>Edit</Button>
           </NavLink>
         </div>

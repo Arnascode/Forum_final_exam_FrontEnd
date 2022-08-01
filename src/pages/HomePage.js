@@ -2,12 +2,10 @@
 import Card from '../components/Card/Card';
 import { useState, useEffect } from 'react';
 import { baseUrl, myDelete, myFetchAuth } from '../utils';
-
 import css from './css/Home.module.css';
 import { useAuthCtx } from '../store/authContext';
 import toast from 'react-hot-toast';
 import Button from '../components/UI/Button/Button';
-import { NavLink } from 'react-router-dom';
 
 function HomePage() {
   // const { id } = useParams();
@@ -52,17 +50,15 @@ function HomePage() {
 
   return (
     <div className={css.center}>
+      <h1 className='text-center'>Our Questions</h1>
       <div className='time'>
         <h3>By time</h3>
-        <Button onClick={getPostsAsc}>ASC</Button>
-        <Button onClick={getPostsDesc}>DESC</Button>
+        <Button onClick={getPostsAsc}>Ascending</Button>
+        <Button onClick={getPostsDesc}>Descending</Button>
       </div>
-
-      <h1 className='text-center'>Questions Page</h1>
-
       <div className={css.container}>
         {!Array.isArray(posts) ? (
-          <h2 className={css['loading']}>Loading...</h2>
+          <h2>Loading...</h2>
         ) : posts.length === 0 ? (
           <h2>No questions, Be the first one to add.</h2>
         ) : (

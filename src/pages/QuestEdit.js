@@ -21,13 +21,11 @@ function QuestEdit() {
     initialValues: initValues,
     validationSchema: Yup.object({
       title: Yup.string().min(3, 'At least 2 characters').max(55).required(),
-      content: Yup.string().min(5, 'At least 5 characters').max(225).required(),
+      content: Yup.string().min(5, 'At least 5 characters').max(555).required(),
     }),
 
     onSubmit: async (values) => {
       const valuesCopy = { ...values };
-
-      // console.log('values ===', values);
       console.log('valuesCopy ===', valuesCopy);
       const addResult = await myPatch(`${baseUrl}/question/${id}`, 'PATCH', token, values);
       console.log('addResult ===', addResult);
@@ -76,7 +74,7 @@ function QuestEdit() {
           />
           <div className='invalid-feedback'>{formik.errors.content}</div>
         </div>
-        <button type='submit' className='btn'>
+        <button type='submit' className='btt'>
           Add
         </button>
       </form>

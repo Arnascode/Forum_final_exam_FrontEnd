@@ -14,7 +14,7 @@ function Header(props) {
               <NavLink className='nav-link' exact to={'/'}>
                 <img className={css.img} src='./img/logo.png' alt='' srcset='' />
               </NavLink>
-              {/* <div>{isUserLoggedIn && <h2 className={css['email']}> Hello {userEmail}</h2>}</div> */}
+
               {isUserLoggedIn && (
                 <>
                   <NavLink className={css['nav-link']} exact to={'/'}>
@@ -26,6 +26,11 @@ function Header(props) {
                   <NavLink onClick={logout} className={css['nav-link']} to={'/login'}>
                     Logout
                   </NavLink>
+                  <div>
+                    {isUserLoggedIn && (
+                      <h2 className={css['email']}> Hello {userEmail.split('@')[0].toUpperCase()}!</h2>
+                    )}
+                  </div>
                 </>
               )}
               {!isUserLoggedIn && (

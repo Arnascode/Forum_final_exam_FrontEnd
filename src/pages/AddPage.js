@@ -1,4 +1,3 @@
-import { toHaveStyle } from '@testing-library/jest-dom/dist/matchers';
 import { useFormik } from 'formik';
 import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -18,13 +17,11 @@ function AddPage() {
     initialValues: initValues,
     validationSchema: Yup.object({
       title: Yup.string().min(3, 'At least 2 characters').max(55).required(),
-      content: Yup.string().min(5, 'At least 5 characters').max(225).required(),
+      content: Yup.string().min(5, 'At least 5 characters').max(555).required(),
     }),
 
     onSubmit: async (values) => {
       const valuesCopy = { ...values };
-
-      // console.log('values ===', values);
       console.log('valuesCopy ===', valuesCopy);
       const addResult = await myFetchAdd(`${baseUrl}/question`, 'POST', token, values);
       console.log('addResult ===', addResult);
@@ -48,7 +45,7 @@ function AddPage() {
 
       <form onSubmit={formik.handleSubmit} className={css.container}>
         <div className='form-group'>
-          <label htmlFor='title'>Title</label>
+          <label htmlFor='title'>Title: </label>
           <input
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -61,7 +58,7 @@ function AddPage() {
           <div className='invalid-feedback'>{formik.errors.title}</div>
         </div>
         <div className='form-group'>
-          <label htmlFor='description'>Content</label>
+          <label htmlFor='description'>Content: </label>
           <input
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -73,7 +70,7 @@ function AddPage() {
           />
           <div className='invalid-feedback'>{formik.errors.content}</div>
         </div>
-        <button type='submit' className='btn'>
+        <button type='submit' className={css.but}>
           Add
         </button>
       </form>
