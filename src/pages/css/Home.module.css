@@ -16,3 +16,7 @@
 .center {
   text-align: center;
 }
+.link {
+  color: black;
+  background-color: red;
+}

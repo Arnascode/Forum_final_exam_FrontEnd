@@ -2,12 +2,12 @@
 import Card from '../components/Card/Card';
 import { useState, useEffect } from 'react';
 import { baseUrl, myDelete, myFetchAuth } from '../utils';
-// import { useAuthCtx } from '../store/authContext';
-// import { NavLink, useHistory } from 'react-router-dom';
+
 import css from './css/Home.module.css';
-import { NavLink, useParams } from 'react-router-dom';
 import { useAuthCtx } from '../store/authContext';
 import toast from 'react-hot-toast';
+import Button from '../components/UI/Button/Button';
+import { NavLink } from 'react-router-dom';
 
 function HomePage() {
   // const { id } = useParams();
@@ -18,6 +18,20 @@ function HomePage() {
   const { token } = useAuthCtx();
   const getPosts = async () => {
     const fetchResult = await myFetchAuth(`${baseUrl}/question`);
+    console.log('fetchResult ===', fetchResult);
+    if (Array.isArray(fetchResult)) {
+      setPosts(fetchResult);
+    }
+  };
+  const getPostsAsc = async () => {
+    const fetchResult = await myFetchAuth(`${baseUrl}/questionasc`);
+    console.log('fetchResult ===', fetchResult);
+    if (Array.isArray(fetchResult)) {
+      setPosts(fetchResult);
+    }
+  };
+  const getPostsDesc = async () => {
+    const fetchResult = await myFetchAuth(`${baseUrl}/questionDesc`);
     console.log('fetchResult ===', fetchResult);
     if (Array.isArray(fetchResult)) {
       setPosts(fetchResult);
@@ -38,7 +52,14 @@ function HomePage() {
 
   return (
     <div className={css.center}>
+      <div className='time'>
+        <h3>By time</h3>
+        <Button onClick={getPostsAsc}>ASC</Button>
+        <Button onClick={getPostsDesc}>DESC</Button>
+      </div>
+
       <h1 className='text-center'>Questions Page</h1>
+
       <div className={css.container}>
         {!Array.isArray(posts) ? (
           <h2 className={css['loading']}>Loading...</h2>
