@@ -26,6 +26,7 @@ function Card(props) {
 
   return (
     <div className={css.card}>
+      <p>{props.num_answers}</p>
       <div className={css.body}>
         <NavLink to={`/${props.id}/answers`}>
           <button onClick={title} className={css.but}>

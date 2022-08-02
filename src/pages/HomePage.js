@@ -6,6 +6,7 @@ import css from './css/Home.module.css';
 import { useAuthCtx } from '../store/authContext';
 import toast from 'react-hot-toast';
 import Button from '../components/UI/Button/Button';
+import Icon from '../components/UI/Icon/Icon';
 
 function HomePage() {
   // const { id } = useParams();
@@ -29,7 +30,21 @@ function HomePage() {
     }
   };
   const getPostsDesc = async () => {
-    const fetchResult = await myFetchAuth(`${baseUrl}/questionDesc`);
+    const fetchResult = await myFetchAuth(`${baseUrl}/questiondesc`);
+    console.log('fetchResult ===', fetchResult);
+    if (Array.isArray(fetchResult)) {
+      setPosts(fetchResult);
+    }
+  };
+  const getAnswersAsc = async () => {
+    const fetchResult = await myFetchAuth(`${baseUrl}/answerasc`);
+    console.log('fetchResult ===', fetchResult);
+    if (Array.isArray(fetchResult)) {
+      setPosts(fetchResult);
+    }
+  };
+  const getAnswersDesc = async () => {
+    const fetchResult = await myFetchAuth(`${baseUrl}/answerdesc`);
     console.log('fetchResult ===', fetchResult);
     if (Array.isArray(fetchResult)) {
       setPosts(fetchResult);
@@ -51,10 +66,25 @@ function HomePage() {
   return (
     <div className={css.center}>
       <h1 className='text-center'>Our Questions</h1>
-      <div className='time'>
-        <h3>By time</h3>
-        <Button onClick={getPostsAsc}>Ascending</Button>
-        <Button onClick={getPostsDesc}>Descending</Button>
+      <div className='desAsc'>
+        <div className='time'>
+          <h3>By time</h3>
+          <Button onClick={getPostsAsc}>
+            <Icon icon='fa fa-sort-amount-asc' />
+          </Button>
+          <Button onClick={getPostsDesc}>
+            <Icon icon='fa fa-sort-amount-desc' />
+          </Button>
+        </div>
+        <div className='answerDEA'>
+          <h3>Only with Answers</h3>
+          <Button onClick={getAnswersAsc}>
+            <Icon icon='fa fa-sort-amount-asc' />
+          </Button>
+          <Button onClick={getAnswersDesc}>
+            <Icon icon='fa fa-sort-amount-desc' />
+          </Button>
+        </div>
       </div>
       <div className={css.container}>
         {!Array.isArray(posts) ? (

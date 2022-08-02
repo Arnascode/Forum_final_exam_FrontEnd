@@ -70,3 +70,11 @@ label {
 .form-group {
   text-align: center;
 }
+
+.desAsc {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  /* margin-left: 15px; */
+  /* margin-right: 15px; */
+}
