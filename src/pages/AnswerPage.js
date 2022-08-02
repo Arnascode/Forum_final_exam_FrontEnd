@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useFormik } from 'formik';
 import { useState, useEffect } from 'react';
-import { baseUrl, myDelete, myFetchAdd, myFetchAuthAnswer } from '../utils';
+import { baseUrl, myDelete, myFetchAdd, myFetchAuth, myFetchAuthAnswer } from '../utils';
 import { useAuthCtx } from '../store/authContext';
 import { useHistory, useParams } from 'react-router-dom';
 import css from './css/Answer.module.css';
@@ -9,11 +9,26 @@ import CardAnswer from '../components/CardAnswer/cardAnswer';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
 
-const initValues = {
-  answer: '',
-};
-
 function AnswerPage() {
+  const initValues = {
+    answer: '',
+  };
+  const title = localStorage.getItem('title');
+
+  const [Title, setTitle] = useState({ title });
+
+  useEffect(() => {
+    setTitle({ title });
+  }, [title]);
+
+  const content = localStorage.getItem('content');
+
+  const [Content, setContent] = useState({ content });
+
+  useEffect(() => {
+    setContent({ content });
+  }, [content]);
+
   const history = useHistory();
   const { token } = useAuthCtx();
   if (!token) history.push('/login');
@@ -43,7 +58,7 @@ function AnswerPage() {
   const formik = useFormik({
     initialValues: initValues,
     validationSchema: Yup.object({
-      answer: Yup.string().min(3, 'At least 3 characters').max(225).required(),
+      answer: Yup.string().min(3, 'At least 3 characters').max(555).required(),
     }),
 
     onSubmit: async (values) => {
@@ -70,7 +85,7 @@ function AnswerPage() {
   return (
     <div className={css.center}>
       <h1 className='text-center'>Our Answers</h1>
-
+      <h2>Question: {content} </h2>
       <div className={css.container}>
         {posts.length === 0 && <h2>Loading...</h2>}
         {posts.map((pObj) => (
@@ -80,7 +95,7 @@ function AnswerPage() {
       <form onSubmit={formik.handleSubmit} className={css.form}>
         <div className='form-group'>
           <label htmlFor='description'>Answer </label>
-          <input
+          <textarea
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.answer}
@@ -88,7 +103,7 @@ function AnswerPage() {
             className={rightClassesForInput('answer')}
             id='answer'
             name='answer'
-          />
+          ></textarea>
 
           <div className='invalid-feedback'>{formik.errors.answer}</div>
           <button type='submit' className={css.but}>

@@ -5,15 +5,24 @@ import { useAuthCtx } from '../store/authContext';
 import { baseUrl, myPatch } from '../utils';
 import css from './css/Add.module.css';
 import toast from 'react-hot-toast';
-
-const tit = localStorage.getItem('title');
-const cont = localStorage.getItem('content');
-const initValues = {
-  title: tit,
-  content: cont,
-};
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 function QuestEdit() {
+  const content = localStorage.getItem('content');
+
+  const title = localStorage.getItem('title');
+  const [updatedTitleAndAnswer, setUpdatedTitleAndAnswer] = useState({ title, content });
+
+  const initValues = {
+    title: title,
+    content: content,
+  };
+
+  useEffect(() => {
+    setUpdatedTitleAndAnswer({ title, content });
+  }, [title, content]);
+
   const history = useHistory();
   const { token } = useAuthCtx();
   const { id } = useParams();
@@ -62,8 +71,8 @@ function QuestEdit() {
           <div className='invalid-feedback'>{formik.errors.title}</div>
         </div>
         <div className='form-group'>
-          <label htmlFor='description'>Content</label>
-          <input
+          <label htmlFor='content'>Content</label>
+          <textarea
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.content}
@@ -71,7 +80,7 @@ function QuestEdit() {
             className={rightClassesForInput('content')}
             id='content'
             name='content'
-          />
+          ></textarea>
           <div className='invalid-feedback'>{formik.errors.content}</div>
         </div>
         <button type='submit' className='btt'>

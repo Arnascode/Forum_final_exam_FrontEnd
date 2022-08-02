@@ -14,16 +14,21 @@ function Card(props) {
   function handleCounterDec() {
     setCounterValue((prevState) => prevState - 1);
   }
+
   const handle = () => {
     localStorage.setItem('title', props.title);
     localStorage.setItem('content', props.content);
   };
-  console.log(handle);
+  const title = () => {
+    // localStorage.setItem('title', props.title);
+    localStorage.setItem('content', props.content);
+  };
+
   return (
     <div className={css.card}>
       <div className={css.body}>
         <NavLink to={`/${props.id}/answers`}>
-          <button className={css.but}>
+          <button onClick={title} className={css.but}>
             <h2>Question Num. {props.id}</h2>Check answers
           </button>
         </NavLink>

@@ -38,6 +38,7 @@ function LoginPage() {
 
     return resultClasses;
   }
+
   return (
     <div className='containerlog'>
       <h1 className='text-center'>Login Here</h1>

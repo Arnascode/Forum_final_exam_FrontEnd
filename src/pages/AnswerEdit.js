@@ -6,21 +6,33 @@ import { useHistory, useParams } from 'react-router-dom';
 import css from './css/Home.module.css';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
-const answ = localStorage.getItem('answer');
-const initValues = {
-  answer: answ,
-};
+//hoks pasimt      use params gaal
 
 function AnswerEdit() {
+  const answer = localStorage.getItem('answer');
+  const initValues = {
+    answer: answer,
+  };
+
+  const [updatedAnswer, setUpdatedAnswer] = useState(initValues);
+
+  useEffect(() => {
+    setUpdatedAnswer({ answer: localStorage.getItem('answer') });
+  }, [answer]);
+
   const history = useHistory();
   const { token } = useAuthCtx();
-  if (!token) history.push('/login');
+  if (!token) {
+    history.push('/login');
+  }
   const { id } = useParams();
   const formik = useFormik({
     initialValues: initValues,
     validationSchema: Yup.object({
-      answer: Yup.string().min(3, 'At least 3 characters').max(225).required(),
+      answer: Yup.string().min(3, 'At least 3 characters').max(555).required(),
     }),
 
     onSubmit: async (values) => {
@@ -49,8 +61,8 @@ function AnswerEdit() {
       <h1 className='text-center'>Edit Answers</h1>
       <form onSubmit={formik.handleSubmit} className={css.container}>
         <div className='form-group'>
-          <label htmlFor='description'>Wanna Change?</label>
-          <input
+          <label htmlFor='answer'>Wanna Change?</label>
+          <textarea
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.answer}
@@ -58,7 +70,7 @@ function AnswerEdit() {
             className={rightClassesForInput('answer')}
             id='answer'
             name='answer'
-          />
+          ></textarea>
           <div className='invalid-feedback'>{formik.errors.answer}</div>
         </div>
         <button type='submit' className='btt'>

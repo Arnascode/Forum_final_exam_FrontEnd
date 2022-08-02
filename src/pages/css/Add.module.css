@@ -1,6 +1,6 @@
 .container {
   gap: 5px;
-  padding: 20px 20px;
+  padding: 10px 10px;
   border-radius: 8px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.584);
   background-color: white;
@@ -9,7 +9,7 @@
   justify-content: center;
   flex-direction: column;
   max-width: 500px;
-  height: 250px;
+  height: 430px;
 
   margin-left: auto;
   margin-right: auto;
@@ -29,4 +29,12 @@
   border-radius: 10px;
   background-color: snow;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.584);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+  max-height: 200px;
+  width: 450px;
+  margin: 3px;
 }

@@ -58,8 +58,8 @@ function AddPage() {
           <div className='invalid-feedback'>{formik.errors.title}</div>
         </div>
         <div className='form-group'>
-          <label htmlFor='description'>Content: </label>
-          <input
+          <label htmlFor='content'>Content: </label>
+          <textarea
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.content}
@@ -67,7 +67,7 @@ function AddPage() {
             className={rightClassesForInput('content')}
             id='content'
             name='content'
-          />
+          ></textarea>
           <div className='invalid-feedback'>{formik.errors.content}</div>
         </div>
         <button type='submit' className={css.but}>
