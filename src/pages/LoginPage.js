@@ -25,6 +25,8 @@ function LoginPage() {
         toast.success('Logged in Successfully!', { duration: 1000 });
         ctx.login(fetchResult.token, values.email);
         history.replace('/');
+      } else {
+        toast.error('Password or email didnt match :(', { duration: 2000 });
       }
     },
   });
