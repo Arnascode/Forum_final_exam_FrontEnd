@@ -16,7 +16,7 @@ function LoginPage() {
     initialValues: initValues,
     validationSchema: Yup.object({
       email: Yup.string().email('Check your email').required(),
-      password: Yup.string().min(4, 'At least 4 characters').max(10).required(),
+      password: Yup.string().min(5, 'At least 5 characters').max(10).required(),
     }),
     onSubmit: async (values) => {
       const fetchResult = await myFetch(`${baseUrl}/login`, 'POST', values);
