@@ -1,67 +1,27 @@
-# Forum App -->
+# Project Title
 
-This project was bootstrapped with [Create React App]
+Forum
 
-## Starting
+# Short Description
 
-1. .env.example delete example and put your url
-2. npm i
-3. npm start
-4. Front end good to go
+This is an application that allows you to ask questions and share the ideas with others. Only questions is available for all the guests, regardless they are members or not. To have all access you have to be a registered user 🔐.
 
-## Available Scripts
+The project has been made using React Js for FE and Node Js (sql) for BE 💡
 
-In the project directory, you can run:
+# HOW TO GET STARTED 🏜
 
-### `npm start`
+To run this project, clone both repository (click the green "Code" button on the top right corner and use the HTTPS link) OR press Download ZIP and open the downloaded files with the code editor of your choice
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Rename the .env example file to .env fill in your back-end details.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Do the following commands to start Front-End
+FRONT-END (open new terminal)
+npm i
+npm start
 
-### `npm test`
+if you didnt start BACK-END you need to clone this repository git@github.com:Arnascode/Forum_final_exam_BackEnd.git
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Enjoy the program! 🏁
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The Author 💻
+Arnas Vilkoncius
