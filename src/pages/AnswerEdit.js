@@ -9,7 +9,6 @@ import toast from 'react-hot-toast';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-//hoks pasimt      use params gaal
 
 function AnswerEdit() {
   const answer = localStorage.getItem('answer');
