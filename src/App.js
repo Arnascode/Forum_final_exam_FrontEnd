@@ -10,9 +10,6 @@ import AddPage from './pages/AddPage';
 import AnswerPage from './pages/AnswerPage';
 import QuestEdit from './pages/QuestEdit';
 import AnswerEdit from './pages/AnswerEdit';
-import { Toaster } from 'react-hot-toast';
-<Toaster position='top-center' reverseOrder={false} />;
-// const id = 5;
 
 function App() {
   return (
@@ -28,6 +25,7 @@ function App() {
         <ProtectedRoute path={'/add'}>
           <AddPage />
         </ProtectedRoute>
+        {/* <ProtectedRoute path={'/questions/:id/answers'}> */}
         <ProtectedRoute path={'/:id/answers'}>
           <AnswerPage />
         </ProtectedRoute>
